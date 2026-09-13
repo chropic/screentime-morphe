@@ -32,7 +32,7 @@ jobs:
       - name: Compile without release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :patches:buildAndroid clean --no-daemon
+        run: ./gradlew clean :patches:buildAndroid --no-daemon
       - name: Upload test bundle
         uses: actions/upload-artifact@v4
         with:
