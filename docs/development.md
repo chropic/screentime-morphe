@@ -14,6 +14,8 @@ Run `bash scripts/test-policy-core.sh` to compile and execute the Android-indepe
 
 CI also installs the `platforms;android-37.0` SDK package and Build Tools 37.0.0 before compiling the lifecycle fixture. This proves the fixture source builds; it does not patch, install, or exercise the APK.
 
+Every successful verification run uploads `screen-time-patch-bundle`, an unreleased `.mpp` artifact. Download it from the Actions run and add it to Morphe as a local source for fixture-only testing. It is not a public release or compatibility claim.
+
 ## Fixture workflow
 
 Build each source fixture, calculate its APK hash, patch it, install it, execute its declared case, and preserve logs/screenshots/timestamps in the integration evidence. Compare a reference-patched baseline with the same build plus Screen time for Sync for Reddit/Patcheddit, X/Piko, Instagram/Piko, and YouTube/official Morphe patches.
