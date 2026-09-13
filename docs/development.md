@@ -12,7 +12,7 @@ Run `./gradlew buildAndroid`; the bundle is produced beneath `patches/build/libs
 
 Run `bash scripts/test-policy-core.sh` to compile and execute the Android-independent policy tests with the installed JDK. CI runs this test and performs a non-release bundle compile. Fixture-patching CI is intentionally conditional on immutable fixture input and an exact patch command; until configured, it is skipped rather than reported as a passing compatibility test.
 
-CI also installs API 37 platform files and Build Tools 37.0.0 before compiling the lifecycle fixture. This proves the fixture source builds; it does not patch, install, or exercise the APK.
+CI also installs the `platforms;android-37.0` SDK package and Build Tools 37.0.0 before compiling the lifecycle fixture. This proves the fixture source builds; it does not patch, install, or exercise the APK.
 
 ## Fixture workflow
 
