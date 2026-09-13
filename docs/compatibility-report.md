@@ -34,6 +34,10 @@ Current runtime status: the manifest patch declares a dedicated-process activity
 
 This is build evidence only. It is not compatibility, startup, or blocking evidence.
 
+## Continuous-integration evidence
+
+GitHub Actions run `34778932830` completed successfully on 2026-09-13. It compiled the patch bundle, ran the Android-independent policy tests, installed `platforms;android-37.0` and Build Tools 37.0.0, and compiled the lifecycle fixture. The configured-fixture patching job was skipped because no immutable fixture URL or patch command has been configured. CI success is build evidence only; it does not establish device compatibility or full blocking.
+
 ## Required result matrix
 
 Document focus, rotation, activities, split screen, PiP, lock, shortcut conflicts; expiry and blocked entry routes; settings access; playback, services, notifications (including delegated), jobs, alarms, native/isolated processes, custom loaders; reboot, process death, duplicate checkpoints, unavailable storage, snapshot disagreement; resets, DST, time zones, pending changes; and initialization, settings, package-renaming, and split-APK coexistence.
