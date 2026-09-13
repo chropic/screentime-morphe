@@ -1,16 +1,14 @@
-# 👋🧩 Morphe Patches template
+# Screen-time patches
 
-Template repository for Morphe Patches.
+An independent, feasibility-stage Morphe patch bundle for Android screen-time controls. It is not a companion app, root solution, server implementation, public release, or universal compatibility claim.
 
-## ❓ About
+The prototype treats complete suspension of host interaction, alerts, playback, and background work as an experiment. Results—especially failures—must be recorded before production architecture is chosen.
 
-Patches for apps I like.
-
-<!-- TODO: Update this about section with a brief introduction/summary about this repo and what it offers. -->
+Read [AGENTS.md](AGENTS.md) first. The design and validation material is in [docs](docs).
 
 ### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+The canonical source repository is `chropic/screentime-morphe`. No released patch bundle exists during the feasibility milestone.
 
 ## 🩹 Patches list
 
@@ -36,12 +34,8 @@ To start using this template, follow these steps:
 3. Enable "Allow GitHub Actions to create and approve pull requests" in your repo Settings > Actions > General > Workflow permissions
 4. Update the [build.gradle.kts](patches/build.gradle.kts) file (Specifically, the 
    [group of the project](patches/build.gradle.kts#L1), and the [About](patches/build.gradle.kts#L6-L11))
-5. Update the [README.md](README.md) file to be specific of your repo, and update the links in the [issue templates](.github/ISSUE_TEMPLATE).
-6. Choose a name for your patches project. Keep in mind you must use a name that does not 
-   imply authorship by the Morphe open source project. If unsure, then simply name these
-   patches after yourself ("UserXYZ Morphe patches"). See the [NOTICE](NOTICE) for details. 
-7. (Optional): Add `patches-bundle.png` to the project if you want a custom icon to show in
-   Morphe Manager instead of your GitHub profile avatar.
+5. Keep this project distinctly named and retain the upstream [NOTICE](NOTICE).
+6. Do not enable a release until the feasibility review approves it.
 
 🎉 You are now ready to start creating patches!
 
@@ -88,4 +82,4 @@ See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+Screen-time patches are licensed under the [GNU General Public License v3.0](LICENSE)

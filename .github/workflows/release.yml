@@ -1,8 +1,8 @@
 name: Release
 
 on:
+  # Feasibility review must approve release activation.
   workflow_dispatch:
-  push:
 
 jobs:
   release:

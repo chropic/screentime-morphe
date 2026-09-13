@@ -1,0 +1,62 @@
+name: Verify feasibility prototype
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  policy-core:
+    name: Policy core tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: bash scripts/test-policy-core.sh
+
+  patch-bundle:
+    name: Compile patch bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Compile without release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew :patches:buildAndroid clean --no-daemon
+
+  lifecycle-fixture:
+    name: Build lifecycle fixture
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install API 37 fixture SDK components
+        run: sdkmanager --install "platforms;android-37" "build-tools;37.0.0"
+      - name: Compile fixture
+        run: ./gradlew -p tests/fixtures/lifecycle :app:assembleDebug --no-daemon
+
+  fixture-patching:
+    name: Patch configured fixture APKs
+    if: ${{ vars.SCREENTIME_FIXTURE_APK_URL != '' && vars.SCREENTIME_PATCH_COMMAND != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Run the configured reproducible fixture procedure
+        env:
+          SCREENTIME_FIXTURE_APK_URL: ${{ vars.SCREENTIME_FIXTURE_APK_URL }}
+          SCREENTIME_PATCH_COMMAND: ${{ vars.SCREENTIME_PATCH_COMMAND }}
+        run: bash tests/integration/patch-configured-fixture.sh

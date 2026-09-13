@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <application
+        android:name=".FixtureApplication"
+        android:appComponentFactory=".FixtureComponentFactory"
+        android:label="Screen-time lifecycle fixture"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name=".SecondActivity" android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="true" android:supportsPictureInPicture="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".FixtureForegroundService" android:foregroundServiceType="dataSync" android:process=":fixture_aux" android:exported="false" />
+        <receiver android:name=".FixtureReceiver" android:exported="false">
+            <intent-filter><action android:name="dev.screentime.fixture.lifecycle.EVENT" /></intent-filter>
+        </receiver>
+        <provider android:name=".FixtureProvider" android:authorities="dev.screentime.fixture.lifecycle.provider" android:exported="false" android:process=":fixture_aux" />
+    </application>
+</manifest>
